@@ -1,9 +1,13 @@
 package oop;
 
 import javafx.application.Application;
+import javafx.geometry.Pos;
+import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
@@ -17,14 +21,40 @@ public class MänguAbi extends Application {
     }
     @Override
     public void start(Stage peaLava) throws Exception {
-        BorderPane piir = new BorderPane();
-        TextField tekst = new TextField();
-        tekst.setText("mingi tekst");
-        piir.setTop(tekst);
-        Scene stseen1 = new Scene(piir, 300, 150, Color.SNOW);
+        Group juur = new Group();
+        Scene stseen1 = new Scene(juur, 500, 500, Color.SNOW);
+
+        Button tiimid = new Button();
+        tiimid.setText("Tiimide valik");
+        tiimid.setLayoutY(0);
+        tiimid.setLayoutX(0);
+
+        Button mangijad = new Button();
+        mangijad.setText("Mängijate valik");
+        mangijad.setLayoutX(0);
+        mangijad.setLayoutY(30);
+
+        Button eelis = new Button();
+        eelis.setText("Väljaku eelis");
+        eelis.setLayoutY(60);
+
+        Button Start = new Button();
+        Start.setStyle("-fx-font-size:40");
+        Start.setText("Mängima!");
+        Start.setLayoutY(250);
+        Start.setLayoutX(50);
+
+
+        juur.getChildren().addAll(tiimid,mangijad,eelis,Start);
+
+
+
+        peaLava.setTitle("NBA BB simulator");
         peaLava.setScene(stseen1);
         peaLava.show();
-        System.out.println("Tere tulemast projekti bb simulator. Tiimid valikus: Lakers,Bulls,Mavericks,Thunder.");
+
+
+        /*System.out.println("Tere tulemast projekti bb simulator. Tiimid valikus: Lakers,Bulls,Mavericks,Thunder.");
         //küsin kasutajalt soovitud tiimide nimed
         Scanner scan = new Scanner(System.in);
         System.out.println("Sisesta esimese tiimi nimi: ");
@@ -90,6 +120,7 @@ public class MänguAbi extends Application {
         mäng.liveMäng();
 
         // tekstivälja loomine ja lisamine piiripaanile (üles)
+        */
 
     }
 }
