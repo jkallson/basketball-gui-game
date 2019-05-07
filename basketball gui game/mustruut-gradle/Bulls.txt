@@ -1,0 +1,10 @@
+Zach LaVine,37,50,115
+Otto Porter Jr.,52,51,107
+Lauri Markkanen,37,48,103
+Jabari Parker,32,52,97
+Bobby Portis,37,48,77
+Justin Holiday,36,43,120
+Kris Dunn,35,45,100
+Wendell Carter Jr.,19,51,91
+Robin Lopez,27,59,89
+Antonio Blakeney,46,42,70

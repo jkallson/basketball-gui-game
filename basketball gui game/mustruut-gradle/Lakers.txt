@@ -1,0 +1,10 @@
+LeBron James,35,58,120
+Kyle Kuzma,31,57,110
+Brandon Ingram,33,52,115
+Javale McGee,12,62,93
+Lonzo Ball,33,48,105
+Reggie Bullock,43,44,100
+Kentavious Caldwell-Pope,34,55,94
+Rajon Rondo,37,43,102
+Lance Stephenson,38,48,80
+Josh Hart,33,52,92

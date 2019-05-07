@@ -1,0 +1,10 @@
+Paul George,39,48,120
+Russell Westbrook,28,48,120
+Dennis Schroder,33,44,100
+Steven Adams,0,61,105
+Jerami Grant,38,58,110
+Markieff Morris,36,44,82
+Terrance Ferguson,36,55,95
+Alex Abrines,32,50,89
+Nerlens Noel,0,56,78
+Ray Felton,27,52,71
