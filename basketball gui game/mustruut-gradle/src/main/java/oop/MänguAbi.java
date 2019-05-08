@@ -1,14 +1,21 @@
 package oop;
 
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
@@ -21,6 +28,16 @@ public class MänguAbi extends Application {
     }
     @Override
     public void start(Stage peaLava) throws Exception {
+        ArrayList<String> Eelis_List = new ArrayList<>(1);
+        ArrayList<String> Tiimide_nimed = new ArrayList<>(2);
+        ArrayList<String> Tiimide_mangijad = new ArrayList<>(2);
+        Tiimide_nimed.add("Lakers.txt");
+        Tiimide_nimed.add("Bulls.txt");
+        Tiimide_mangijad.add("0,1,2,3,4");
+        Tiimide_mangijad.add("0,1,2,3,4");
+        Eelis_List.add("0,0");
+
+
         Group juur = new Group();
         Scene stseen1 = new Scene(juur, 500, 500, Color.SNOW);
 
@@ -44,9 +61,124 @@ public class MänguAbi extends Application {
         Start.setLayoutY(250);
         Start.setLayoutX(50);
 
+        tiimid.setOnMouseClicked(new EventHandler<MouseEvent>()  {
+
+            @Override
+            public void handle(MouseEvent event){
+                Stage kast = new Stage();
+                VBox kastV = new VBox(20);
+                kastV.getChildren().add(new Text(" Tiimid valikus: Lakers,Bulls,Mavericks,Thunder. Default Lakers vs Bulls\n Kustuta, kirjuta tiim, vajuta ENTER. \n Kustuta, kirjuta teine tiim vajuta ENTER"));
+                Scene dialogScene = new Scene(kastV, 500, 200);
+                TextField Esimene_sisestus = new TextField();
+                Esimene_sisestus.setText("Esimene tiim");
+                Esimene_sisestus.setOnKeyPressed(new EventHandler<KeyEvent>() {
+                    @Override
+                    public void handle(KeyEvent event) {
+
+                        if (event.getCode() == KeyCode.ENTER) {
+                            Tiimide_nimed.set(0,Esimene_sisestus.getText()+".txt");
+                            Esimene_sisestus.setText("Esimene tiim valitud");
+                        }
+                    }
+                });
+
+                TextField Teine_sisestus = new TextField();
+                Teine_sisestus.setText("Teine tiim");
+                Teine_sisestus.setOnKeyPressed(new EventHandler<KeyEvent>() {
+                    @Override
+                    public void handle(KeyEvent event) {
+
+                        if (event.getCode() == KeyCode.ENTER) {
+                            Tiimide_nimed.set(1,Teine_sisestus.getText()+".txt");
+                            Teine_sisestus.setText("Teine tiim valitud");
+                        }
+                    }
+                });
+
+
+
+                kastV.getChildren().addAll(Esimene_sisestus,Teine_sisestus);
+                kast.setTitle("Tiimide valik");
+                kast.setScene(dialogScene);
+                kast.show();
+            }
+
+        });
+
+        mangijad.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+
+            @Override
+            public void handle(MouseEvent event) {
+
+                failiSisseLugeja Meeskonnad = new failiSisseLugeja(Tiimide_nimed.get(0), Tiimide_nimed.get(1));
+                Meeskonnad.tiimiListid(Tiimide_nimed.get(0), Tiimide_nimed.get(1));
+                ArrayList<String> tiim1Mängijad = Meeskonnad.getTiim1MängijateList();
+                ArrayList<String> tiim2Mängijad = Meeskonnad.getTiim2MängijateList();
+
+                Stage kast = new Stage();
+                VBox kastV = new VBox(20);
+                kastV.getChildren().add(new Text(" Vali mängijad, kirjuta kasti nende indeks nt: 0,1,2,3,4. Default Lakers vs Bulls"));
+                Scene dialogScene = new Scene(kastV, 1000, 200);
+                kastV.getChildren().add(new Text(" Esimese tiimi mängijad: "+tiim1Mängijad));
+                TextField Esimesed_mangijad = new TextField();
+                Esimesed_mangijad.setText("Sisesta esimese tiimi mängijad");
+                Esimesed_mangijad.setOnKeyPressed(new EventHandler<KeyEvent>() {
+                    @Override
+                    public void handle(KeyEvent event) {
+                        if (event.getCode() == KeyCode.ENTER) {
+                            Tiimide_mangijad.set(0,Esimesed_mangijad.getText());
+                            Esimesed_mangijad.setText("Esimene tiim valitud");
+                        }
+                    }
+                });
+
+                kastV.getChildren().add(new Text(" Teise tiimi mängijad: "+tiim2Mängijad));
+                TextField Teised_mangijad = new TextField();
+                Teised_mangijad.setText("Sisesta teise tiimi mängijad");
+                Teised_mangijad.setOnKeyPressed(new EventHandler<KeyEvent>() {
+                    @Override
+                    public void handle(KeyEvent event) {
+                        if (event.getCode() == KeyCode.ENTER) {
+                            Tiimide_mangijad.set(1,Teised_mangijad.getText());
+                            Teised_mangijad.setText("Teine tiim valitud");
+                        }
+                    }
+                });
+
+                kastV.getChildren().addAll(Esimesed_mangijad,Teised_mangijad);
+                kast.setTitle("Mängijate valik");
+                kast.setScene(dialogScene);
+                kast.show();
+            }
+        });
+
+        eelis.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                Stage kast = new Stage();
+                VBox kastV = new VBox(20);
+                kastV.getChildren().add(new Text(" Vali koduväljaku eelis protsentides, nt: 5,0 "));
+                Scene dialogScene = new Scene(kastV, 500, 200);
+                TextField eelis = new TextField();
+                eelis.setOnKeyPressed(new EventHandler<KeyEvent>() {
+                    @Override
+                    public void handle(KeyEvent event) {
+                        if (event.getCode() == KeyCode.ENTER) {
+                            Eelis_List.set(0,eelis.getText());
+                            eelis.setText("Eelis valitud.");
+                        }
+                    }
+                });
+                kastV.getChildren().addAll(eelis);
+                kast.setTitle("Mängijate valik");
+                kast.setScene(dialogScene);
+                kast.show();
+            }
+        });
+
 
         juur.getChildren().addAll(tiimid,mangijad,eelis,Start);
-
 
 
         peaLava.setTitle("NBA BB simulator");
