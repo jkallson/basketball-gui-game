@@ -95,9 +95,17 @@ public class MänguAbi extends Application {
                     }
                 });
 
+                Button sulge = new Button("Sulge aken");
+                sulge.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent event) {
+                        kast.hide();
+                    }
+                });
 
 
-                kastV.getChildren().addAll(Esimene_sisestus,Teine_sisestus);
+
+                kastV.getChildren().addAll(Esimene_sisestus,Teine_sisestus,sulge);
                 kast.setTitle("Tiimide valik");
                 kast.setScene(dialogScene);
                 kast.show();
@@ -119,7 +127,7 @@ public class MänguAbi extends Application {
                 Stage kast = new Stage();
                 VBox kastV = new VBox(20);
                 kastV.getChildren().add(new Text(" Vali mängijad, kirjuta kasti nende indeks nt: 0,1,2,3,4. Default Lakers vs Bulls"));
-                Scene dialogScene = new Scene(kastV, 1000, 200);
+                Scene dialogScene = new Scene(kastV, 1000, 300);
                 kastV.getChildren().add(new Text(" Esimese tiimi mängijad: "+tiim1Mängijad));
                 TextField Esimesed_mangijad = new TextField();
                 Esimesed_mangijad.setText("Sisesta esimese tiimi mängijad");
@@ -146,7 +154,15 @@ public class MänguAbi extends Application {
                     }
                 });
 
-                kastV.getChildren().addAll(Esimesed_mangijad,Teised_mangijad);
+                Button sulge = new Button("Sulge aken");
+                sulge.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent event) {
+                        kast.hide();
+                    }
+                });
+
+                kastV.getChildren().addAll(Esimesed_mangijad,Teised_mangijad,sulge);
                 kast.setTitle("Mängijate valik");
                 kast.setScene(dialogScene);
                 kast.show();
@@ -170,7 +186,16 @@ public class MänguAbi extends Application {
                         }
                     }
                 });
-                kastV.getChildren().addAll(eelis);
+
+                Button sulge = new Button("Sulge aken");
+                sulge.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent event) {
+                        kast.hide();
+                    }
+                });
+
+                kastV.getChildren().addAll(eelis,sulge);
                 kast.setTitle("Mängijate valik");
                 kast.setScene(dialogScene);
                 kast.show();
