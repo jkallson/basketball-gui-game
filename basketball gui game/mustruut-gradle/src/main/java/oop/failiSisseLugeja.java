@@ -37,7 +37,7 @@ public class failiSisseLugeja {
         this.tiim2 = tiim2;
     }
 
-    public void tiimiListid(String tiim1, String tiim2) throws Exception {
+    public void tiimiListid(String tiim1, String tiim2) {
         File fail = new File(tiim1);
         File fail2 = new File(tiim2);
         //loon scanneri, mille abil loen esimese tiimi mängijad järjendisse
@@ -53,6 +53,9 @@ public class failiSisseLugeja {
                 tiim1MängijateList.add(tükid[0]);
             }
         }
+        catch (Exception e){
+            System.out.println(e);
+        }
         //loon scanneri, mille abil loen teise tiimi mängijad järjendisse
         try (Scanner sc = new Scanner(fail2, "UTF-8")) {
             while (sc.hasNextLine()) {
@@ -65,6 +68,9 @@ public class failiSisseLugeja {
                 tiim2List.add(abi);
                 tiim2MängijateList.add(tükid[0]);
             }
+        }
+        catch (Exception e){
+            System.out.println(e);
         }
     }
 }
