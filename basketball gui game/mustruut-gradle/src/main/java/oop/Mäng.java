@@ -1,24 +1,17 @@
 package oop;
 
 import javafx.event.EventHandler;
-import javafx.scene.Group;
-import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.IndexRange;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import  javafx.scene.control.TextField;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.*;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 public class Mäng {
     private ArrayList<String> tiim1Mängijad;
@@ -187,7 +180,7 @@ public class Mäng {
         mängulaused.add("Mäng läbi! Lõppseis:  " + tiim1 + " " + tiim1Skoor + ":" + tiim2Skoor + " " + tiim2);
         Stage lava = new Stage();
         VBox halal = new VBox();
-        TextArea abacus = new TextArea("Vajuta nupule, et genereerida mäng");
+        TextArea abacus = new TextArea("Vajuta ekraanile, et genereerida mäng");
         halal.getChildren().add(abacus);
         Scene stseen = new Scene(halal,500,200);
 
