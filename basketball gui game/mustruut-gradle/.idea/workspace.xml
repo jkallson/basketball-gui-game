@@ -1,26 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4d844fec-8eb0-4956-a51b-ef20594a9d32" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.1.1/executionHistory/executionHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.1.1/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.1.1/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.1.1/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/classAnalysis.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/javaCompile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/taskHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/oop/MänguAbi$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/oop/MänguAbi$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/oop/MänguAbi$2$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/oop/MänguAbi$2$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/oop/MänguAbi$2$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/oop/MänguAbi$2$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/oop/MänguAbi$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/oop/MänguAbi$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/oop/MänguAbi$3$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/oop/MänguAbi$3$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/oop/MänguAbi$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/oop/MänguAbi$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/oop/MänguAbi.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/oop/MänguAbi.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/oop/MänguAbi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/oop/MänguAbi.java" afterDir="false" />
-    </list>
+    <list default="true" id="4d844fec-8eb0-4956-a51b-ef20594a9d32" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/" />
     <ignored path="$PROJECT_DIR$/out/" />
@@ -70,9 +51,10 @@
     <session id="-1697112996">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="1" />
+          <entry key="project.closed" value="2" />
+          <entry key="project.open.time.10" value="1" />
           <entry key="project.open.time.2" value="1" />
-          <entry key="project.opened" value="1" />
+          <entry key="project.opened" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
@@ -87,7 +69,7 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/oop/MänguAbi.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1530">
+            <state relative-caret-position="480">
               <caret line="129" column="62" selection-start-line="129" selection-start-column="62" selection-end-line="129" selection-end-column="62" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -539,8 +521,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -578,11 +558,13 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1557332893207" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../Progeharjutused/10A" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -710,7 +692,7 @@
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2631579" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2680162" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -753,7 +735,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/oop/MustRuut.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/oop/MänguAbi.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1530">
+        <state relative-caret-position="480">
           <caret line="129" column="62" selection-start-line="129" selection-start-column="62" selection-end-line="129" selection-end-column="62" />
           <folding>
             <element signature="imports" expanded="true" />
