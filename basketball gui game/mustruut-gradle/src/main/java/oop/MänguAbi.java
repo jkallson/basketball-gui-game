@@ -7,6 +7,7 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -18,6 +19,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -26,6 +29,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
+import java.util.jar.JarEntry;
 
 public class MänguAbi extends Application {
     public String tiim1Vise;
@@ -66,29 +70,40 @@ public class MänguAbi extends Application {
         Tiimide_mangijad.add("0,1,2,3,4");
         Eelis_List.add("0,0");
 
+        Image image = new Image("file:lebron.jpg");
+        ImageView pilt = new ImageView(image);
+
 
         Group juur = new Group();
         Scene stseen1 = new Scene(juur, 500, 500, Color.SNOW);
 
+        TextArea textArea = new TextArea("Tere tulemast mängu NBA BB simulator! \n"+ "Antud mängus saate valida 4 tiimi vahel: " +
+                "Lakers, Maverics,Thunder ning Bulls.\n Head mängu!!");
+        textArea.setLayoutX(0);
+        textArea.setLayoutY(0);
+        textArea.setMaxSize(500,100);
+
         Button tiimid = new Button();
         tiimid.setText("Tiimide valik");
-        tiimid.setLayoutY(0);
-        tiimid.setLayoutX(0);
+        tiimid.setLayoutY(100);
+        tiimid.setLayoutX(200);
 
         Button mangijad = new Button();
         mangijad.setText("Mängijate valik");
-        mangijad.setLayoutX(0);
-        mangijad.setLayoutY(30);
+        mangijad.setPrefSize(100,20);
+        mangijad.setLayoutX(190);
+        mangijad.setLayoutY(130);
 
         Button eelis = new Button();
         eelis.setText("Väljaku eelis");
-        eelis.setLayoutY(60);
+        eelis.setLayoutX(200);
+        eelis.setLayoutY(160);
 
         Button Start = new Button();
         Start.setStyle("-fx-font-size:40");
         Start.setText("Mängima!");
-        Start.setLayoutY(250);
-        Start.setLayoutX(50);
+        Start.setLayoutY(200);
+        Start.setLayoutX(120);
 
         tiimid.setOnMouseClicked(new EventHandler<MouseEvent>()  {
 
@@ -284,7 +299,7 @@ public class MänguAbi extends Application {
             }
         });
 
-        juur.getChildren().addAll(tiimid,mangijad,eelis,Start   );
+        juur.getChildren().addAll(pilt,tiimid,mangijad,eelis,Start,textArea   );
 
 
         peaLava.setTitle("NBA BB simulator");
