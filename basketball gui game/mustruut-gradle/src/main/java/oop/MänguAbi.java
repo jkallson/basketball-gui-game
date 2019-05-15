@@ -5,10 +5,7 @@ import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -25,10 +22,7 @@ import javafx.scene.image.ImageView;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 import java.util.jar.JarEntry;
 
 public class MänguAbi extends Application {
@@ -93,6 +87,12 @@ public class MänguAbi extends Application {
         mangijad.setPrefSize(100,20);
         mangijad.setLayoutX(190);
         mangijad.setLayoutY(130);
+
+        Button sulgemine = new Button();
+        sulgemine.setText("Sulgemine");
+        sulgemine.setPrefSize(100,20);
+        sulgemine.setLayoutX(190);
+        sulgemine.setLayoutY(400);
 
         Button eelis = new Button();
         eelis.setText("Väljaku eelis");
@@ -298,8 +298,44 @@ public class MänguAbi extends Application {
 
             }
         });
+        sulgemine.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override public void handle(MouseEvent event) {
+                ButtonType jah = new ButtonType("Jah",ButtonBar.ButtonData.YES);
+                ButtonType ei = new ButtonType("Ei",ButtonBar.ButtonData.NO);
+                Alert küsimus = new Alert(Alert.AlertType.CONFIRMATION,"Kas tõesti soovite lahkuda?" , jah, ei);
+                küsimus.setTitle("Sulgemine");
 
-        juur.getChildren().addAll(pilt,tiimid,mangijad,eelis,Start,textArea   );
+
+                Optional<ButtonType> tulemus = küsimus.showAndWait();
+                if(tulemus.orElse(ei)==jah){
+                    System.out.println("yeet");
+                    Alert a = new Alert(Alert.AlertType.INFORMATION);
+                    a.setTitle("Sulgemine");
+                    a.setHeaderText("Aitäh, et mängisite meie loodud mängu!");
+                    a.show();
+                    peaLava.hide();
+                }
+                else if(tulemus.orElse(jah)==ei){
+                    Alert a = new Alert(Alert.AlertType.INFORMATION);
+                    a.setTitle("Sulgemine");
+                    a.setHeaderText("Juhhei!!!!!!!!");
+                    a.show();
+                }
+
+
+
+
+
+
+
+
+
+
+
+            }
+        });
+
+        juur.getChildren().addAll(pilt, tiimid, sulgemine, mangijad, eelis, Start, textArea);
 
 
         peaLava.setTitle("NBA BB simulator");
