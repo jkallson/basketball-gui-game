@@ -1,15 +1,21 @@
 package oop;
 
+import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.IndexRange;
+import javafx.scene.control.TextArea;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import  javafx.scene.control.TextField;
 
-import java.awt.*;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.*;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -52,12 +58,8 @@ public class Mäng {
 
     //antud meetod jooksutab mängu
     public void liveMäng() throws InterruptedException {
+        ArrayList<String> mängulaused = new ArrayList<>();
         Stage mäng = new Stage();
-        TextField tekst = new TextField();
-        tekst.setPrefWidth(500);
-        Group juur = new Group();
-        juur.getChildren().add(tekst);
-        Scene stseen = new Scene(juur,500,500);
         int tiim1Skoor = 0;
         int tiim2Skoor = 0;
         Map<String,Integer> parimad1 = new HashMap<>();
@@ -82,7 +84,7 @@ public class Mäng {
             int viskaja2ViskeKaugus = tiimideIndex.nextInt(2) + 1;
 
             //väsimus
-            for (int j = 0; j < tiim1MängijadViskeProtsendiga.size() ; j++) {
+            /*for (int j = 0; j < tiim1MängijadViskeProtsendiga.size() ; j++) {
                 String a = (String) tiim1MängijadViskeProtsendiga.get(j).get(3);
                 int b = Integer.parseInt(a)-1;
                 String c = Integer.toString(b);
@@ -125,7 +127,7 @@ public class Mäng {
 
 
             //veerandajad
-            if(i == 23 || i == 46 || i == 69){
+            /*if(i == 23 || i == 46 || i == 69){
                 veerandAjad++;
                 System.out.println();
                 System.out.println(veerandAjad+". veerandaja lõpp. Skoor: " + tiim1 + " " + tiim1Skoor + ":" + tiim2Skoor + " " + tiim2);
@@ -181,7 +183,7 @@ public class Mäng {
                 String jätkamine = Jätka.nextLine();
                 System.out.println("Järgmine veerandaeg!");
                 TimeUnit.SECONDS.sleep(2);
-            }
+            }*/
 
 
 
@@ -194,11 +196,9 @@ public class Mäng {
                     if (viskaja1ViskeKaugus == 1) {
                         if (viskaja1Tabavus < Integer.parseInt(mängija.get(viskaja1ViskeKaugus))) {
                             tiim1Skoor += 3;
-                            juur.getChildren().remove(tekst);
-                            tekst.setText(valitudViskaja1 + " viskas kolmest. Vise tabab! Skoor: " + tiim1 + " " + tiim1Skoor + ":" + tiim2Skoor + " " + tiim2);
-                            System.out.println(tekst.getText());
-                            juur.getChildren().add(tekst);
-                            stseen.setRoot(juur);
+
+                            mängulaused.add(valitudViskaja1 + " viskas kolmest. Vise tabab! Skoor: " + tiim1 + " " + tiim1Skoor + ":" + tiim2Skoor + " " + tiim2);
+
                             if (parimad1.containsKey(valitudViskaja1)) {
                                 parimad1.put(valitudViskaja1, parimad1.get(valitudViskaja1)+3);
                             }
@@ -206,20 +206,17 @@ public class Mäng {
                                 parimad1.put(valitudViskaja1, 3);
                             }
                         } else {
-                            juur.getChildren().remove(tekst);
-                            tekst.setText(valitudViskaja1 + " viskas kolmest. Vise ei taba... Skoor: " + tiim1 + " " + tiim1Skoor + ":" + tiim2Skoor + " " + tiim2);
-                            System.out.println(tekst.getText());
-                            juur.getChildren().add(tekst);
-                            stseen.setRoot(juur);
+
+                            mängulaused.add(valitudViskaja1 + " viskas kolmest. Vise ei taba... Skoor: " + tiim1 + " " + tiim1Skoor + ":" + tiim2Skoor + " " + tiim2);
+
                         }
                     } else if (viskaja1ViskeKaugus == 2) {
                         if (viskaja1Tabavus < Integer.parseInt(mängija.get(viskaja1ViskeKaugus))) {
                             tiim1Skoor += 2;
-                            juur.getChildren().remove(tekst);
-                            tekst.setText(valitudViskaja1 + " viskas kahest. Vise tabab! Skoor: " + tiim1 + " " + tiim1Skoor + ":" + tiim2Skoor + " " + tiim2);
-                            System.out.println(tekst.getText());
-                            juur.getChildren().add(tekst);
-                            stseen.setRoot(juur);
+
+                            mängulaused.add(valitudViskaja1 + " viskas kahest. Vise tabab! Skoor: " + tiim1 + " " + tiim1Skoor + ":" + tiim2Skoor + " " + tiim2);
+
+
                             if (parimad1.containsKey(valitudViskaja1)) {
                                 parimad1.put(valitudViskaja1, parimad1.get(valitudViskaja1)+2);
                             }
@@ -227,18 +224,15 @@ public class Mäng {
                                 parimad1.put(valitudViskaja1, 2);
                             }
                         } else {
-                            juur.getChildren().remove(tekst);
-                            tekst.setText(valitudViskaja1 + " viskas kahest. Vise ei taba... Skoor: " + tiim1 + " " + tiim1Skoor + ":" + tiim2Skoor + " " + tiim2);
-                            System.out.println(tekst.getText());
-                            juur.getChildren().add(tekst);
-                            stseen.setRoot(juur);
+
+                            mängulaused.add(valitudViskaja1 + " viskas kahest. Vise ei taba... Skoor: " + tiim1 + " " + tiim1Skoor + ":" + tiim2Skoor + " " + tiim2);
+
                         }
                     }
-                    mänguabi.kuvamine(mäng);
+
                     break;
                 }
             }
-            TimeUnit.SECONDS.sleep(2);
 
             //for tsükkel teise tiimi viske sooritamiseks
             for (int k = 0; k < tiim2MängijadViskeProtsendiga.size(); k++) {
@@ -248,11 +242,9 @@ public class Mäng {
                     if (viskaja2ViskeKaugus == 1) {
                         if (viskaja2Tabavus < Integer.parseInt(mängija.get(viskaja2ViskeKaugus))) {
                             tiim2Skoor += 3;
-                            juur.getChildren().remove(tekst);
-                            tekst.setText(valitudViskaja2 + " viskas kolmest. Vise tabab! Skoor: " + tiim1 + " " + tiim1Skoor + ":" + tiim2Skoor + " " + tiim2);
-                            System.out.println(tekst.getText());
-                            juur.getChildren().add(tekst);
-                            stseen.setRoot(juur);
+
+                            mängulaused.add(valitudViskaja2 + " viskas kolmest. Vise tabab! Skoor: " + tiim1 + " " + tiim1Skoor + ":" + tiim2Skoor + " " + tiim2);
+
                             if (parimad2.containsKey(valitudViskaja2)) {
                                 parimad2.put(valitudViskaja2, parimad2.get(valitudViskaja2)+3);
                             }
@@ -260,20 +252,16 @@ public class Mäng {
                                 parimad2.put(valitudViskaja2, 3);
                             }
                         } else {
-                            juur.getChildren().remove(tekst);
-                            tekst.setText(valitudViskaja2 + " viskas kolmest. Vise ei taba... Skoor: " + tiim1 + " " + tiim1Skoor + ":" + tiim2Skoor + " " + tiim2);
-                            System.out.println(tekst.getText());
-                            juur.getChildren().add(tekst);
-                            stseen.setRoot(juur);
+
+                            mängulaused.add(valitudViskaja2 + " viskas kolmest. Vise ei taba... Skoor: " + tiim1 + " " + tiim1Skoor + ":" + tiim2Skoor + " " + tiim2);
+
                         }
                     } else if (viskaja2ViskeKaugus == 2) {
                         if (viskaja2Tabavus < Integer.parseInt(mängija.get(viskaja2ViskeKaugus))) {
                             tiim2Skoor += 2;
-                            juur.getChildren().remove(tekst);
-                            tekst.setText(valitudViskaja2 + " viskas kahest. Vise tabab! Skoor: " + tiim1 + " " + tiim1Skoor + ":" + tiim2Skoor + " " + tiim2);
-                            System.out.println(tekst.getText());
-                            juur.getChildren().add(tekst);
-                            stseen.setRoot(juur);
+
+                            mängulaused.add(valitudViskaja2 + " viskas kahest. Vise tabab! Skoor: " + tiim1 + " " + tiim1Skoor + ":" + tiim2Skoor + " " + tiim2);
+
                             if (parimad2.containsKey(valitudViskaja2)) {
                                 parimad2.put(valitudViskaja2, parimad2.get(valitudViskaja2)+2);
                             }
@@ -281,30 +269,52 @@ public class Mäng {
                                 parimad2.put(valitudViskaja2, 2);
                             }
                         } else {
-                            juur.getChildren().remove(tekst);
-                            tekst.setText(valitudViskaja2 + " viskas kahest. Vise ei taba... Skoor: " + tiim1 + " " + tiim1Skoor + ":" + tiim2Skoor + " " + tiim2);
-                            juur.getChildren().add(tekst);
-                            stseen.setRoot(juur);
+
+                            mängulaused.add(valitudViskaja2 + " viskas kahest. Vise ei taba... Skoor: " + tiim1 + " " + tiim1Skoor + ":" + tiim2Skoor + " " + tiim2);
+
                         }
                     }
-                    mäng.setScene(stseen);
-                    mänguabi.kuvamine(mäng);
                     break;
                 }
             }
-            TimeUnit.SECONDS.sleep(2);
         }
-        System.out.println();
-        System.out.println("Mäng läbi! Lõppseis:  " + tiim1 + " " + tiim1Skoor + ":" + tiim2Skoor + " " + tiim2);
         if (tiim1Skoor > tiim2Skoor) {
-            System.out.println();
-            System.out.print("Mängu parim mängija oli: " + parimad1.entrySet().stream().max((entry1, entry2) -> entry1.getValue() > entry2.getValue() ? 1 : -1).get().getKey() + ", ");
-            System.out.println(parimad1.get(parimad1.entrySet().stream().max((entry1, entry2) -> entry1.getValue() > entry2.getValue() ? 1 : -1).get().getKey()) + " punktiga.");
+            mängulaused.add("Mängu parim mängija oli: " + parimad1.entrySet().stream().max((entry1, entry2) -> entry1.getValue() > entry2.getValue() ? 1 : -1).get().getKey() + ", ");
+            mängulaused.add(parimad1.get(parimad1.entrySet().stream().max((entry1, entry2) -> entry1.getValue() > entry2.getValue() ? 1 : -1).get().getKey()) + " punktiga.");
         }
         else {
-            System.out.println();
-            System.out.print("Mängu parim mängija oli: " + parimad2.entrySet().stream().max((entry1, entry2) -> entry1.getValue() > entry2.getValue() ? 1 : -1).get().getKey() + ", ");
-            System.out.println(parimad2.get(parimad2.entrySet().stream().max((entry1, entry2) -> entry1.getValue() > entry2.getValue() ? 1 : -1).get().getKey()) + " punktiga.");
+            mängulaused.add("Mängu parim mängija oli: " + parimad2.entrySet().stream().max((entry1, entry2) -> entry1.getValue() > entry2.getValue() ? 1 : -1).get().getKey() + ", ");
+            mängulaused.add(parimad2.get(parimad2.entrySet().stream().max((entry1, entry2) -> entry1.getValue() > entry2.getValue() ? 1 : -1).get().getKey()) + " punktiga.");
         }
+
+        mängulaused.add("Mäng läbi! Lõppseis:  " + tiim1 + " " + tiim1Skoor + ":" + tiim2Skoor + " " + tiim2);
+        Stage lava = new Stage();
+        VBox halal = new VBox();
+        TextArea abacus = new TextArea();
+        halal.getChildren().add(abacus);
+        Scene stseen = new Scene(halal,500,200);
+
+        abacus.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                try {
+                    BufferedWriter writer = new BufferedWriter(new FileWriter("Logifail.txt"));
+
+                    for (int i = 0; i < mängulaused.size(); i++) {
+                        abacus.setText(abacus.getText()+"\n" + mängulaused.get(i));
+                        writer.write(mängulaused.get(i)+"\n");
+                    }
+                    writer.close();
+                }
+                catch (IOException e){
+                    System.out.println(e);
+                }
+            }
+        });
+
+
+        lava.setScene(stseen);
+        lava.show();
+
     }
 }

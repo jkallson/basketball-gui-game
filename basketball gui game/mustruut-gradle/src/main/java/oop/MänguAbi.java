@@ -5,6 +5,7 @@ import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
@@ -18,7 +19,11 @@ import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -119,9 +124,18 @@ public class MänguAbi extends Application {
                     }
                 });
 
+                Button sulge = new Button();
+                sulge.setText("Sulge aken");
+
+                sulge.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent event) {
+                        kast.hide();
+                    }
+                });
 
 
-                kastV.getChildren().addAll(Esimene_sisestus,Teine_sisestus);
+                kastV.getChildren().addAll(Esimene_sisestus,Teine_sisestus,sulge);
                 kast.setTitle("Tiimide valik");
                 kast.setScene(dialogScene);
                 kast.show();
@@ -144,7 +158,7 @@ public class MänguAbi extends Application {
                 Stage kast = new Stage();
                 VBox kastV = new VBox(20);
                 kastV.getChildren().add(new Text(" Vali mängijad, kirjuta kasti nende indeks nt: 0,1,2,3,4. Default Lakers vs Bulls"));
-                Scene dialogScene = new Scene(kastV, 1000, 200);
+                Scene dialogScene = new Scene(kastV, 1000, 300);
                 kastV.getChildren().add(new Text(" Esimese tiimi mängijad: "+tiim1Mängijad));
                 TextField Esimesed_mangijad = new TextField();
                 Esimesed_mangijad.setText("Sisesta esimese tiimi mängijad");
@@ -171,7 +185,19 @@ public class MänguAbi extends Application {
                     }
 
                 });
-                kastV.getChildren().addAll(Esimesed_mangijad,Teised_mangijad);
+
+                Button sulge = new Button();
+                sulge.setText("Sulge aken");
+
+                sulge.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent event) {
+                        kast.hide();
+                    }
+                });
+
+
+                kastV.getChildren().addAll(Esimesed_mangijad,Teised_mangijad,sulge);
                 kast.setTitle("Mängijate valik");
                 kast.setScene(dialogScene);
                 kast.show();
@@ -195,48 +221,70 @@ public class MänguAbi extends Application {
                         }
                     }
                 });
-                kastV.getChildren().addAll(eelis);
+
+                Button sulge = new Button();
+                sulge.setText("Sulge aken");
+
+                sulge.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent event) {
+                        kast.hide();
+                    }
+                });
+
+                kastV.getChildren().addAll(eelis,sulge);
                 kast.setTitle("Mängijate valik");
                 kast.setScene(dialogScene);
                 kast.show();
             }
         });
 
+
         Start.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                Stage asd = new Stage();
-                VBox sisu = new VBox(20);
+                    String[] jupid = Eelis_List.get(0).split(",");
+                    if(NimedeKontroll(Tiimide_nimed.get(0)) && NimedeKontroll(Tiimide_nimed.get(1)) && ArvudeKontroll(Tiimide_mangijad.get(0)) && ArvudeKontroll(Tiimide_mangijad.get(1)) && EeliseKontroll(jupid[0]) && EeliseKontroll(jupid[1])) {
+                        Stage asd = new Stage();
+                        VBox sisu = new VBox(20);
 
 
-                failiSisseLugeja tiimid = new failiSisseLugeja(Tiimide_nimed.get(0), Tiimide_nimed.get(1));
-                tiimid.tiimiListid(Tiimide_nimed.get(0), Tiimide_nimed.get(1));
-                tiim1Mängijad = tiimid.getTiim1MängijateList();
-                tiim2Mängijad = tiimid.getTiim2MängijateList();
-                algViisikuValimine algViisik = new algViisikuValimine(tiim1Mängijad,tiim2Mängijad,Tiimide_mangijad.get(0),Tiimide_mangijad.get(1));
+                        failiSisseLugeja tiimid = new failiSisseLugeja(Tiimide_nimed.get(0), Tiimide_nimed.get(1));
+                        tiimid.tiimiListid(Tiimide_nimed.get(0), Tiimide_nimed.get(1));
+                        tiim1Mängijad = tiimid.getTiim1MängijateList();
+                        tiim2Mängijad = tiimid.getTiim2MängijateList();
+                        algViisikuValimine algViisik = new algViisikuValimine(tiim1Mängijad, tiim2Mängijad, Tiimide_mangijad.get(0), Tiimide_mangijad.get(1));
 
-                algViisik.tiim1Starters();
-                algViisik.tiim2Starters();
+                        algViisik.tiim1Starters();
+                        algViisik.tiim2Starters();
 
-                tiim1AlgViisikList = algViisik.getTiim1algViisik();
-                tiim1VahetusMängijad = algViisik.getTiim1VahetusMängijad();
+                        tiim1AlgViisikList = algViisik.getTiim1algViisik();
+                        tiim1VahetusMängijad = algViisik.getTiim1VahetusMängijad();
 
-                tiim2AlgViisikList = algViisik.getTiim2algViisik();
-                tiim2VahetusMängijad = algViisik.getTiim2VahetusMängijad();
+                        tiim2AlgViisikList = algViisik.getTiim2algViisik();
+                        tiim2VahetusMängijad = algViisik.getTiim2VahetusMängijad();
 
-                tiim1MängijadViskeProtsendiga = tiimid.getTiim1List();
-                tiim2MängijadViskeProtsendiga = tiimid.getTiim2List();
+                        tiim1MängijadViskeProtsendiga = tiimid.getTiim1List();
+                        tiim2MängijadViskeProtsendiga = tiimid.getTiim2List();
+                        try {
+                            mäng();
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
 
+                    else{
+                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                        alert.setTitle("Viga sisendis!");
+                        alert.setHeaderText("Viga sisendis!");
+                        alert.setContentText("Sisesta kõik uuesti korrektselt ning proovi uuesti! ");
+                        alert.showAndWait();
+                    }
 
-                try {
-                    mäng();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
             }
         });
 
-        juur.getChildren().addAll(tiimid,mangijad,eelis,Start);
+        juur.getChildren().addAll(tiimid,mangijad,eelis,Start   );
 
 
         peaLava.setTitle("NBA BB simulator");
@@ -248,9 +296,45 @@ public class MänguAbi extends Application {
         Mäng liveMäng = new Mäng(tiim1Mängijad,tiim1AlgViisikList,tiim1VahetusMängijad,tiim1MängijadViskeProtsendiga,tiim2Mängijad,tiim2AlgViisikList,tiim2VahetusMängijad,tiim2MängijadViskeProtsendiga,Tiimide_nimed.get(0).replace(".txt",""),Tiimide_nimed.get(1).replace(".txt",""),0,0);
         liveMäng.liveMäng();
     }
+
     public void kuvamine(Stage kuvamine){
         kuvamine.setTitle("Mäng");
         kuvamine.show();
+    }
+
+    public boolean NimedeKontroll(String abc){
+        boolean abacus = false;
+        List<String> tiimid = Arrays.asList("Lakers.txt","Bulls.txt","Thunder.txt","Mavericks.txt");
+        for (int i = 0; i <tiimid.size() ; i++) {
+            if(abc.equals(tiimid.get(i))){
+                abacus = true;
+            }
+        }
+        return abacus;
+    }
+
+    public boolean ArvudeKontroll(String abacus){
+        boolean abi = true;
+        String[] jupid = abacus.split(",");
+        for (int i = 0; i <jupid.length ; i++) {
+            int vemps = Integer.parseInt(jupid[i]);
+            if(vemps > 9 || vemps < 0){
+                abi = false;
+            }
+        }
+        return abi;
+    }
+
+    public boolean EeliseKontroll(String abacus){
+        boolean abi = true;
+        String[] jupid = abacus.split(",");
+        for (int i = 0; i <jupid.length ; i++) {
+            int vemps = Integer.parseInt(jupid[i]);
+            if(vemps > 10 || vemps < 0){
+                abi = false;
+            }
+        }
+        return abi;
     }
 
 
