@@ -279,15 +279,6 @@ public class MänguAbi extends Application {
                             e.printStackTrace();
                         }
                     }
-
-                    else{
-                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                        alert.setTitle("Viga sisendis!");
-                        alert.setHeaderText("Viga sisendis!");
-                        alert.setContentText("Sisesta kõik uuesti korrektselt ning proovi uuesti! ");
-                        alert.showAndWait();
-                    }
-
             }
         });
         sulgemine.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -337,9 +328,17 @@ public class MänguAbi extends Application {
     public boolean NimedeKontroll(String abc){
         boolean abacus = false;
         List<String> tiimid = Arrays.asList("Lakers.txt","Bulls.txt","Thunder.txt","Mavericks.txt");
-        for (int i = 0; i <tiimid.size() ; i++) {
+        if(!tiimid.contains(abc)){
+            Alert a = new Alert(Alert.AlertType.ERROR);
+            a.setTitle("Valed argumentid");
+            a.setHeaderText("Antud tiimi ei eksisteeri. Vaadake üle tiimide list ning proovige uuesti");
+            a.show();
+        }
+        else{
+            for (int i = 0; i <tiimid.size() ; i++) {
             if(abc.equals(tiimid.get(i))){
                 abacus = true;
+             }
             }
         }
         return abacus;
@@ -347,10 +346,27 @@ public class MänguAbi extends Application {
 
     public boolean ArvudeKontroll(String abacus){
         boolean abi = true;
+        Alert a = new Alert(Alert.AlertType.ERROR);
         String[] jupid = abacus.split(",");
         for (int i = 0; i <jupid.length ; i++) {
-            int vemps = Integer.parseInt(jupid[i]);
-            if(vemps > 9 || vemps < 0){
+            try{
+                int vemps = Integer.parseInt(jupid[i]);
+                if(vemps > 9 || vemps < 0){
+                    a.setTitle("Indeksit ei eksisteeri");
+                    a.setHeaderText("Sisestasite indeksi valesti. Vaadake juhist ning proovige uuesti");
+                    a.show();
+                    abi = false;
+                }
+                else if(jupid.length != 5){
+                    a.setTitle("Tiimi mängijate suurus on vale");
+                    a.setHeaderText("Sisestasite liiga palju/vähe mängijaid. Valima peab viis mängijat");
+                    a.show();
+                }
+            }
+            catch (NumberFormatException e){
+                a.setTitle("Valed argumentid");
+                a.setHeaderText("Sisestasite arvu valesti. Vaadake juhist ning proovige uuesti");
+                a.show();
                 abi = false;
             }
         }
@@ -361,8 +377,18 @@ public class MänguAbi extends Application {
         boolean abi = true;
         String[] jupid = abacus.split(",");
         for (int i = 0; i <jupid.length ; i++) {
-            int vemps = Integer.parseInt(jupid[i]);
-            if(vemps > 10 || vemps < 0){
+            try {
+                int vemps = Integer.parseInt(jupid[i]);
+                if (vemps > 10 || vemps < 0) {
+                    abi = false;
+                }
+            }
+            catch (NumberFormatException e){
+                Alert a = new Alert(Alert.AlertType.ERROR);
+                a.setTitle("Valed argumentid");
+                a.setHeaderText("Sisestasite eelise valesti. Vaadake juhist ning proovige uuesti");
+                a.show();
+                abi = false;
                 abi = false;
             }
         }

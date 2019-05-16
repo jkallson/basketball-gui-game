@@ -73,10 +73,7 @@ public class Mäng {
             String valitudViskaja2 = tiim2algViisik.get(viskaja2);
             int viskaja2Tabavus = tiimideIndex.nextInt(100- tiim2Eelis)+tiim2Eelis;
             int viskaja2ViskeKaugus = tiimideIndex.nextInt(2) + 1;
-
-
-
-
+            
             //for tsükkel esimese tiimi viske sooritamiseks
 
             for (int j = 0; j < tiim1MängijadViskeProtsendiga.size(); j++) {
@@ -203,9 +200,7 @@ public class Mäng {
             }
         });
 
-
         lava.setScene(stseen);
         lava.show();
-
     }
 }
