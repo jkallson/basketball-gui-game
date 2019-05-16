@@ -1,24 +1,17 @@
 package oop;
 
 import javafx.event.EventHandler;
-import javafx.scene.Group;
-import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.IndexRange;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import  javafx.scene.control.TextField;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.*;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 public class Mäng {
     private ArrayList<String> tiim1Mängijad;
@@ -38,8 +31,6 @@ public class Mäng {
     private int tiim1Eelis;
     private int tiim2Eelis;
 
-
-    MänguAbi mänguabi = new MänguAbi();
 
     public Mäng(ArrayList<String> tiim1Mängijad, ArrayList<String> tiim1algViisik, ArrayList<String> tiim1VahetusMängijad, ArrayList<List> tiim1MängijadViskeProtsendiga, ArrayList<String> tiim2Mängijad, ArrayList<String> tiim2algViisik, ArrayList<String> tiim2VahetusMängijad, ArrayList<List> tiim2MängijadViskeProtsendiga, String tiim1, String tiim2, int tiim1Eelis, int tiim2Eelis) {
         this.tiim1Mängijad = tiim1Mängijad;
@@ -82,6 +73,8 @@ public class Mäng {
             String valitudViskaja2 = tiim2algViisik.get(viskaja2);
             int viskaja2Tabavus = tiimideIndex.nextInt(100- tiim2Eelis)+tiim2Eelis;
             int viskaja2ViskeKaugus = tiimideIndex.nextInt(2) + 1;
+
+
 
 
             //for tsükkel esimese tiimi viske sooritamiseks
@@ -187,13 +180,14 @@ public class Mäng {
         mängulaused.add("Mäng läbi! Lõppseis:  " + tiim1 + " " + tiim1Skoor + ":" + tiim2Skoor + " " + tiim2);
         Stage lava = new Stage();
         VBox halal = new VBox();
-        TextArea abacus = new TextArea();
+        TextArea abacus = new TextArea("Vajuta ekraanile, et genereerida mäng");
         halal.getChildren().add(abacus);
         Scene stseen = new Scene(halal,500,200);
 
         abacus.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
+                abacus.setText("");
                 try {
                     BufferedWriter writer = new BufferedWriter(new FileWriter("Logifail.txt"));
 
